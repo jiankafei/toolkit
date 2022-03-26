@@ -1,0 +1,7 @@
+IOS中 audio 资源不会主动加载，
+  1. proload = 'auto' 只会主动加载元数据;
+  2. currentTime 的设置必须在资源加载后设置才有效,也就是在 canplay 后才可以设置audio的一切属性;
+  3. duration ios和android都是在 loadedmetadata 事件后获取
+  4. 资源的加载是一次性的，也就是说会把整个资源加载下来才会真正播放
+  5. 基于第四条，所以 loadstart loadedmetadata canplay 等加载事件只会在开始触发一次
+  6. 第一次播放的 playing 事件会在真正播放前触发；

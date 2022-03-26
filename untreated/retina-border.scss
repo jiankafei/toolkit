@@ -1,0 +1,65 @@
+// retina border width function
+@function retinaBorderWidth($val, $ratio) {
+  @if $ratio == 2 {
+    @return set-nth($val, 1, .5px);
+  } @else if $ratio == 3 {
+    @return set-nth($val, 1, .33333px);
+  }
+}
+// retina border
+@mixin retina-border($prop, $val, $radius...: false) {
+  .pc & {
+    #{$prop}: $val;
+    @if $radius {
+      border-radius: $radius;
+    }
+  }
+  .ios & {
+    #{$prop}: $val;
+    @if $radius {
+      border-radius: $radius;
+    }
+    @media only screen and (-webkit-device-pixel-ratio: 2) {
+      #{$prop}: retinaBorderWidth($val, 2);
+    }
+    @media only screen and (-webkit-device-pixel-ratio: 3) {
+      #{$prop}: retinaBorderWidth($val, 3);
+    }
+  }
+  .android & {
+    position: relative;
+    @if $radius {
+      border-radius: $radius;
+    }
+    &::after {
+      content: '\2002';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      transform-origin: 0 0;
+      pointer-events: none;
+      #{$prop}: $val;
+      @if $radius {
+        border-radius: $radius;
+      }
+      @media only screen and (min-resolution: 1.5dppx) {
+        width: 200%;
+        height: 200%;
+        @if $radius {
+          border-radius: $radius * 2;
+        }
+        transform: scale3d(.5,.5,1);
+      }
+      @media only screen and (min-resolution: 2.5dppx) {
+        width: 300%;
+        height: 300%;
+        @if $radius {
+          border-radius: $radius * 3;
+        }
+        transform: scale3d(.33333,.33333,1);
+      }
+    }
+  }
+}

@@ -1,0 +1,111 @@
+/* 伸缩容器 */
+.flex-box {
+	display: flex !important;
+}
+.flex-inline {
+	display: inline-flex !important;
+}
+
+/* 方向 */
+.row-fwd {
+	flex-direction: row;
+}
+.row-rev {
+	flex-direction: row-reverse;
+}
+.col-fwd {
+	flex-direction: column;
+}
+.col-rev {
+	flex-direction: column-reverse;
+}
+
+/* 换行 */
+.wrap-fwd {
+	flex-wrap: wrap;
+}
+.wrap-rev {
+	flex-wrap: wrap-reverse;
+}
+
+/* 主轴对齐 */
+.justify-start {
+	justify-content: flex-start;
+}
+.justify-center {
+	justify-content: center;
+}
+.justify-end {
+	justify-content: flex-end;
+}
+.justify-between {
+	justify-content: space-between;
+}
+.justify-around {
+	justify-content: space-around;
+}
+
+/* 侧轴对齐 */
+.align-start {
+	align-content: flex-start;
+}
+.align-center {
+	align-content: center;
+}
+.align-end {
+	align-content: flex-end;
+}
+.align-between {
+	align-content: space-between;
+}
+.align-around {
+	align-content: space-around;
+}
+.align-stretch {
+	align-content: stretch;
+}
+
+/* 侧轴单行对齐 */
+.items-start {
+	align-items: flex-start;
+}
+.items-center {
+	align-items: center;
+}
+.items-end {
+	align-items: flex-end;
+}
+.items-stretch {
+	align-items: stretch;
+}
+
+/* 子元素对齐 */
+.self-start {
+	align-self: flex-start;
+}
+.self-center {
+	align-self: center;
+}
+.self-end {
+	align-self: flex-end;
+}
+.self-stretch {
+	align-self: stretch;
+}
+
+/* flex */
+.flex-1 {
+	flex: 1;
+}
+.flex-none {
+	flex: none;
+}
+.flex-auto {
+  flex: auto;
+}
+.grow-1 {
+	flex-grow: 1;
+}
+.shrink-1 {
+	flex-shrink: 1;
+}

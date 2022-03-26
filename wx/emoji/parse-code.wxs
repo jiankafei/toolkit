@@ -1,0 +1,86 @@
+var emojiCodeRemoteMap = {
+  '[WX]': '/emoji_1.png',
+  '[TS]': '/emoji_2.png',
+  '[FK]': '/emoji_3.png',
+  '[SS]': '/emoji_4.png',
+  '[MJ]': '/emoji_5.png',
+  '[GC]': '/emoji_6.png',
+  '[QQ]': '/emoji_7.png',
+  '[GL]': '/emoji_8.png',
+  '[ZY]': '/emoji_9.png',
+  '[DX]': '/emoji_10.png',
+  '[WN]': '/emoji_11.png',
+  '[CM]': '/emoji_12.png',
+  '[CQ]': '/emoji_13.png',
+  '[DK]': '/emoji_14.png',
+  '[ZY2]': '/emoji_15.png',
+  '[LL]': '/emoji_16.png',
+  '[DO]': '/emoji_17.png',
+  '[XO]': '/emoji_18.png',
+  '[MX]': '/emoji_19.png',
+  '[MA]': '/emoji_20.png',
+  '[MP]': '/emoji_21.png',
+  '[MQ]': '/emoji_22.png',
+  '[MN]': '/emoji_23.png',
+  '[MK]': '/emoji_24.png',
+  '[MG]': '/emoji_25.png',
+  '[QW]': '/emoji_26.png',
+  '[AX]': '/emoji_27.png',
+  '[XG]': '/emoji_28.png',
+  '[BGX]': '/emoji_29.png',
+  '[HH]': '/emoji_30.png',
+  '[PY]': '/emoji_31.png',
+  '[JJ]': '/emoji_32.png',
+  '[BX]': '/emoji_33.png',
+  '[ZBX]': '/emoji_34.png',
+  '[DH]': '/emoji_35.png',
+  '[XC]': '/emoji_36.png',
+  '[LLMM]': '/emoji_37.png',
+  '[TX]': '/emoji_38.png',
+  '[SH]': '/emoji_39.png',
+  '[WL]': '/emoji_40.png',
+  '[NWN]': '/emoji_41.png',
+  '[OK]': '/emoji_42.png',
+  '[SW]': '/emoji_43.png',
+  '[SM]': '/emoji_44.png',
+  '[YW]': '/emoji_45.png',
+  '[JT]': '/emoji_46.png',
+  '[AN]': '/emoji_47.png',
+};
+
+var emojiCodeRE = getRegExp('(\[WX\]|\[TS\]|\[FK\]|\[SS\]|\[MJ\]|\[GC\]|\[QQ\]|\[GL\]|\[ZY\]|\[DX\]|\[WN\]|\[CM\]|\[CQ\]|\[DK\]|\[ZY2\]|\[LL\]|\[DO\]|\[XO\]|\[MX\]|\[MA\]|\[MP\]|\[MQ\]|\[MN\]|\[MK\]|\[MG\]|\[QW\]|\[AX\]|\[XG\]|\[BGX\]|\[HH\]|\[PY\]|\[JJ\]|\[BX\]|\[ZBX\]|\[DH\]|\[XC\]|\[LLMM\]|\[TX\]|\[SH\]|\[WL\]|\[NWN\]|\[OK\]|\[SW\]|\[SM\]|\[YW\]|\[JT\]|\[AN\])', 'mg');
+
+// code to remote
+var fmcr = function(content, emojiSize) {
+  var nodes = [];
+  var arr = content.split(emojiCodeRE);
+  arr.forEach(function(item) {
+    emojiCodeRE.lastIndex = 0;
+    var matched = emojiCodeRE.exec(item);
+    emojiCodeRE.lastIndex = 0;
+    if (matched === null) {
+      // text
+      item && nodes.push({
+        type: 'text',
+        text: item,
+      });
+    } else {
+      // emoji
+      nodes.push({
+        name: 'img',
+        attrs: {
+          src: 'http://www.example.com' + emojiCodeRemoteMap[matched[1]],
+          width: emojiSize + 'px',
+          height: emojiSize + 'px',
+          style: 'vertical-align: text-top;margin: 0 2px;',
+        },
+      });
+    }
+  });
+  return nodes;
+};
+
+module.exports = {
+  fmcr: fmcr,
+  emojiCodeRemoteMap: emojiCodeRemoteMap,
+};

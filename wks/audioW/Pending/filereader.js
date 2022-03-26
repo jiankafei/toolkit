@@ -1,0 +1,1 @@
+const isSupportFileApi = () => (window.File && window.FileList && window.FileReader && window.Blob);
